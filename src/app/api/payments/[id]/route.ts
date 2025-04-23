@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+type Params = Promise<{ id: string }>
+
+
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+    { params }: { params: Params }
 ) {
-  try {
+  try { 
+    const { id } = await params;
+
     // Verificar se o ID foi fornecido
-    if (!params.id) {
+    if (!id) {
       return NextResponse.json(
         { error: "ID do pagamento não fornecido" },
         { status: 400 }
@@ -17,7 +22,7 @@ export async function DELETE(
     // Verificar se o pagamento existe
     const payment = await prisma.pagamento.findUnique({
       where: {
-        id: params.id,
+        id: id,
       },
     });
 
@@ -31,7 +36,7 @@ export async function DELETE(
     // Deletar o pagamento
     await prisma.pagamento.delete({
       where: {
-        id: params.id,
+        id: id,
       },
     });
 
