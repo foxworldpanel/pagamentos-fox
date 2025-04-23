@@ -6,17 +6,13 @@ import { notFound } from "next/navigation";
 import { CopyButton } from "./copy-button";
 import { Countdown } from "./countdown";
 
-type Params = {
-  params: {
-    id: string
-  }
-}
+type Params = Promise<{ id: string }>
 
-export default async function PagamentoPage({ params }: Params) {
-  // Buscar o pagamento usando o Prisma
+export default async function PagamentoPage({ params }: { params: Params }) {
+  const { id } = await params
   const pagamento = await prisma.pagamento.findUnique({
     where: {
-      externalId: params.id
+      externalId: id
     }
   });
 
