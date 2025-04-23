@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  email      String      @unique
+  name       String?
+  pagamentos Pagamento[]
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @default(now()) @map("updated_at")
+
+  @@map("users")
+}
+
+model Pagamento {
+  id             String    @id @default(uuid())
+  userId         String    @map("user_id")
+  transactionId  String    @unique @map("transaction_id")
+  externalId     String    @unique @map("external_id")
+  status         String
+  amount         Decimal   @db.Decimal(10, 2)
+  description    String?
+  emvCode        String?   @map("emv_code")
+  qrCodeImage    String?   @map("qr_code_image")
+  dueDate        DateTime? @map("due_date")
+  expiration     Int?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @map("updated_at")
+  paymentDate    DateTime? @map("payment_date")
+  paymentId      String?   @map("payment_id")
+  paymentLink    String?   @map("payment_link")
+  debtorName     String?   @map("debtor_name")
+  debtorDocument String?   @map("debtor_document")
+  user           User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@map("pagamentos")
+} 
