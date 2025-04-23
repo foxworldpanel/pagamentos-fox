@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "shad:add": "npx shadcn@latest add",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.11",
