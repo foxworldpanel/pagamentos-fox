@@ -3,11 +3,11 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-export default async function ObrigadoPage({
-  searchParams,
-}: {
+interface PageProps {
   searchParams: Record<string, string | string[] | undefined>;
-}) {
+}
+
+export default async function Page({ searchParams }: PageProps) {
   const id = searchParams.id;
   
   if (!id) {
