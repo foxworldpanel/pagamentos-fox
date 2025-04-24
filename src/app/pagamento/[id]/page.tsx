@@ -5,6 +5,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CopyButton } from "./copy-button";
 import { Countdown } from "./countdown";
+import { StatusChecker } from "./status-checker";
 
 type Params = Promise<{ id: string }>
 
@@ -109,6 +110,12 @@ export default async function PagamentoPage({ params }: { params: Params }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#1d1d1d] text-white p-4">
+      {/* StatusChecker component for automatic status updates */}
+      <StatusChecker 
+        transactionId={pagamento.transactionId} 
+        currentStatus={pagamento.status} 
+      />
+      
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Image

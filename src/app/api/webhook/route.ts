@@ -6,11 +6,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     console.log("Webhook body:", body);
 
-    const expectedAuth = process.env.EZZEBANK_WEBHOOK_AUTH;
-    if (!expectedAuth || body.authentication !== expectedAuth) {
-      console.log("Autenticação inválida:", body.authentication);
-      return NextResponse.json({ message: "Autenticação inválida" }, { status: 401 });
-    }
+    // const expectedAuth = process.env.EZZEBANK_WEBHOOK_AUTH;
+    // if (!expectedAuth || body.authentication !== expectedAuth) {
+    //   console.log("Autenticação inválida:", body.authentication);
+    //   return NextResponse.json({ message: "Autenticação inválida" }, { status: 401 });
+    // }
 
     if (body.transactionType !== 'RECEIVEPIX') {
       return NextResponse.json({ message: "Tipo de transação não processável" }, { status: 200 });

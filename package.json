@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "shad:add": "npx shadcn@latest add",
-    "prisma:generate": "npx prisma generate",
-    "postinstall": "prisma generate"
+    "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.11",
@@ -46,8 +45,5 @@
     "prisma": "^6.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
   }
 }
