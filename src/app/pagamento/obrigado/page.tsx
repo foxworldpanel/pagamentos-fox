@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-type Params = Promise<{ id: string }>
 
 export default async function ObrigadoPage({
   searchParams,
