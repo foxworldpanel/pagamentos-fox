@@ -2,14 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+type Params = Promise<{ id: string }>
 
 export default async function ObrigadoPage({
   searchParams,
 }: {
-  searchParams: { id?: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const { id } = searchParams;
-
+  const id = searchParams.id;
+  
   if (!id) {
     redirect("/");
   }
