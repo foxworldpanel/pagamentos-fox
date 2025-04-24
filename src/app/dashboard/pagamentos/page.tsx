@@ -10,7 +10,7 @@ import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { DeleteButton } from "@/app/pagamento/[id]/delete-button";
+import { DeleteButton } from "@/app/pix/[id]/delete-button";
 
 type Pagamento = {
   id: string;

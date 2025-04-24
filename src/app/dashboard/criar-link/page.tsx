@@ -66,7 +66,7 @@ export default function CriarLinkPage() {
           due_date: paymentData.calendar?.dueDate,
           expiration: paymentData.calendar?.expiration,
           created_at: new Date().toISOString(),
-          payment_link: `${window.location.origin}/pagamento/${paymentData.external_id}`,
+          payment_link: `${window.location.origin}/pix/${paymentData.external_id}`,
           debtor_name: paymentData.debtor?.name,
           debtor_document: paymentData.debtor?.document
         });
@@ -125,7 +125,7 @@ export default function CriarLinkPage() {
       const data = await response.json();
       
       // URL do link de pagamento
-      const paymentUrl = `${window.location.origin}/pagamento/${data.external_id}`;
+      const paymentUrl = `${window.location.origin}/pix/${data.external_id}`;
       
       // Processar os campos exatos conforme retornados pela API
       // Salvar os dados do QR Code
